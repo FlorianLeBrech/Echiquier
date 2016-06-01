@@ -1,5 +1,6 @@
 package tools;
 
+import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -39,7 +40,9 @@ public class ChessPiecesFactory {
 
 				if (pieceCouleur.equals(ChessPiecePos.values()[i].couleur)) {
 					for (int j = 0; j < (ChessPiecePos.values()[i].coords).length; j++) {
-						String className = "model." + ChessPiecePos.values()[i].nom;	// attention au chemin
+                                                File g=new File("");
+						//String className = "model.Tour";	// attention au chemin
+                                                String className = "model." + ChessPiecePos.values()[i].nom;	// attention au chemin
 						Coord pieceCoord = ChessPiecePos.values()[i].coords[j];
 						pieces.add((Pieces) Introspection.newInstance (className,
 								new Object[] {pieceCouleur, pieceCoord}));

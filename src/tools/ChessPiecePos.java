@@ -9,7 +9,24 @@ import model.Couleur;
  */
 public enum ChessPiecePos {
 
-	TOURBLANC("Tour", Couleur.BLANC, new Coord[] {new Coord(0,7), new Coord(7,7)});/*,
+	TOURBLANC("Tour", Couleur.BLANC, new Coord[] {new Coord(0,7), new Coord(7,7)}),
+	CAVALIERBLANC("Tour", Couleur.BLANC, new Coord[] {new Coord(1,7), new Coord(6,7)}), 
+	FOUBLANC("Tour", Couleur.BLANC, new Coord[] {new Coord(2,7), new Coord(5,7)}), 
+	REINEBLANC("Tour", Couleur.BLANC, new Coord[] {new Coord(3,7)}), 
+	ROIBLANC("Tour", Couleur.BLANC, new Coord[] {new Coord(4,7)}),
+	PIONBLANC("Tour", Couleur.BLANC, new Coord[] {new Coord(0,6), new Coord(1,6), new Coord(2,6), new Coord(3,6),
+			new Coord(4,6), new Coord(5,6), new Coord(6,6), new Coord(7,6)}),
+			
+	TOURNOIR("Tour", Couleur.NOIR, new Coord[] {new Coord(0,0), new Coord(7,0)}),
+	CAVALIERNOIR("Tour", Couleur.NOIR, new Coord[] {new Coord(1,0), new Coord(6,0)}), 
+	FOUNOIR("Tour", Couleur.NOIR, new Coord[] {new Coord(2,0), new Coord(5,0)}), 
+	REINENOIR("Tour", Couleur.NOIR, new Coord[] {new Coord(3,0)}), 
+	ROINOIR("Tour", Couleur.NOIR, new Coord[] {new Coord(4,0)}),
+	PIONNOIR("Tour", Couleur.NOIR, new Coord[] {new Coord(0,1), new Coord(1,1), new Coord(2,1), new Coord(3,1),
+			new Coord(4,1), new Coord(5,1), new Coord(6,1), new Coord(7,1)})   
+	; 
+        /*
+        TOURBLANC("Tour", Couleur.BLANC, new Coord[] {new Coord(0,7), new Coord(7,7)}),
 	CAVALIERBLANC("Cavalier", Couleur.BLANC, new Coord[] {new Coord(1,7), new Coord(6,7)}), 
 	FOUBLANC("Fou", Couleur.BLANC, new Coord[] {new Coord(2,7), new Coord(5,7)}), 
 	REINEBLANC("Reine", Couleur.BLANC, new Coord[] {new Coord(3,7)}), 
@@ -24,7 +41,8 @@ public enum ChessPiecePos {
 	ROINOIR("Roi", Couleur.NOIR, new Coord[] {new Coord(4,0)}),
 	PIONNOIR("Pion", Couleur.NOIR, new Coord[] {new Coord(0,1), new Coord(1,1), new Coord(2,1), new Coord(3,1),
 			new Coord(4,1), new Coord(5,1), new Coord(6,1), new Coord(7,1)})   
-	; */
+	;
+          */              
 	public String nom;
 	public Couleur couleur;
 	public  Coord[] coords = new Coord[8] ;   

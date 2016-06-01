@@ -6,15 +6,17 @@
 
 package model;
 
+import model.AbstractPiece;
+import model.Coord;
+import model.Couleur;
+
 /**
  *
  * @author hugo.talbot
  */
 public class Tour extends AbstractPiece {
-    Couleur couleur;
-    Coord coord;
-    
-    Tour(Couleur couleur, Coord coord) {
+   
+    public Tour(Couleur couleur, Coord coord) {
         super(couleur, coord);
     }
             
@@ -34,12 +36,12 @@ public class Tour extends AbstractPiece {
 
     @Override
     public String toString() {
-        return this.couleur+"_To";
+        return this.getCouleur()+"_To";
     }
 
     @Override
     public String getName() {
-        return this.couleur+"_To";
+        return this.getCouleur()+"_To";
     }
     
  

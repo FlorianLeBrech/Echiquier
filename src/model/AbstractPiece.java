@@ -9,7 +9,7 @@ package model;
  *
  * @author Florian
  */
-abstract class AbstractPiece implements Pieces {
+public abstract class AbstractPiece implements Pieces {
     
     
     public static void main (String[] args){
