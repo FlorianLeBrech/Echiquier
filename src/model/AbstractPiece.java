@@ -29,7 +29,7 @@ abstract class AbstractPiece implements Pieces {
     private Couleur couleur;
 
     public AbstractPiece(Couleur couleur, Coord coord) {
-        this.couleur = this.couleur;
+        this.couleur = couleur;
         this.coord = coord;
     }
 
