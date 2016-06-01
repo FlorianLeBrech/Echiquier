@@ -45,9 +45,7 @@ abstract class AbstractPiece implements Pieces {
         return this.couleur;
     }
 
-    public String toString() {
-        return this.getClass().toString();      // a changer peut etre 
-    }
+    public abstract String toString();
 
     public boolean move(int x, int y) {
         this.coord.x = x;

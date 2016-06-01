@@ -31,6 +31,16 @@ public class Tour extends AbstractPiece {
         
         return false;
     }
+
+    @Override
+    public String toString() {
+        return this.couleur+"_To";
+    }
+
+    @Override
+    public String getName() {
+        return this.couleur+"_To";
+    }
     
  
 }
