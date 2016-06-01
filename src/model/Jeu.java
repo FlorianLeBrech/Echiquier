@@ -19,10 +19,10 @@ public class Jeu implements Game {
     private Couleur couleur;
     private List<Pieces> pieces;
     boolean castlingPossible;
-        
+
     public Jeu(Couleur couleur) {
         this.pieces = ChessPiecesFactory.newPieces(couleur);
-        this.castlingPossible=false;
+        this.castlingPossible = false;
     }
 
     public static void main(String[] args) {
@@ -36,7 +36,7 @@ public class Jeu implements Game {
     }
 
     private Pieces findPiece(int x, int y) {
-        for (int i=0; i < pieces.size(); i++) {
+        for (int i = 0; i < pieces.size(); i++) {
             if (pieces.get(i).getX() == x && pieces.get(i).getY() == y) {
                 return pieces.get(i);
             }
@@ -44,20 +44,18 @@ public class Jeu implements Game {
         return null;
     }
 
-    public boolean setCastlingPossible() 
-    {
+    public boolean setCastlingPossible() {
         return castlingPossible;
-        
+
     }
-    
-        public boolean getCastlingPossible() 
-    {
-        return castlingPossible;        
+
+    public boolean getCastlingPossible() {
+        return castlingPossible;
     }
 
     @Override
     public boolean isPieceHere(int x, int y) {
-        for (int i=0; i < pieces.size(); i++) {
+        for (int i = 0; i < pieces.size(); i++) {
             if (pieces.get(i).getX() == x && pieces.get(i).getY() == y) {
                 return true;
             }
@@ -72,8 +70,6 @@ public class Jeu implements Game {
     public List<Pieces> getPieces() {
         return pieces;
     }
-
-    
 
     @Override
     public boolean isMoveOk(int xInit, int yInit, int xFinal, int yFinal, boolean isCatchOk, boolean isCastlingPossible) {
@@ -92,5 +88,19 @@ public class Jeu implements Game {
     @Override
     public boolean capture(int xCatch, int yCatch) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public List<PieceIHMs> getPiecesIHM() {
+        PieceIHMs newPieceIHM = null;
+        List<PieceIHMs> list = new LinkedList<PieceIHMs>();
+        
+        for (Pieces piece : pieces) {
+        //si la pièce est toujours en jeu 
+            if (piece.getX() != -1) {
+                newPieceIHM = new PieceIHM(piece);
+                list.add(newPieceIHM);
+            }
+        }
+        return list;
     }
 }
