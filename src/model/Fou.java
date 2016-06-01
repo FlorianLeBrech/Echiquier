@@ -36,7 +36,7 @@ public class Fou extends AbstractPiece {
 
     @Override
     public String getName() {
-        return "_Fo";
+        return "Fo";
     }
     
     

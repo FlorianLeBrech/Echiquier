@@ -35,7 +35,7 @@ public class Cavalier extends AbstractPiece {
 
     @Override
     public String getName() {
-        return "_Ca";
+        return "Ca";
     }
     
     
