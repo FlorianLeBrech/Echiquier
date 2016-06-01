@@ -10,6 +10,20 @@ package model;
  * @author Florian
  */
 abstract class AbstractPiece implements Pieces {
+    
+    
+    public static void main (String[] args){
+        Pieces maTour = new Tour(Couleur.NOIR, new Coord(0, 0));
+        System.out.println(maTour.getX()+" "+maTour.getY());
+        
+        System.out.println(maTour.isMoveOk(3, 0, true, true));
+        //maTour.move(3,0);
+        System.out.println(maTour.getX()+" "+maTour.getY());
+        System.out.println(maTour.isMoveOk(3, 3, true, true));
+        maTour.move(3,3);
+        System.out.println(maTour.getX()+" "+maTour.getY());
+        
+    }
 
     private Coord coord;
     private Couleur couleur;
