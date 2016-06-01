@@ -15,7 +15,7 @@ public class Tour extends AbstractPiece {
     Coord coord;
     
     Tour(Couleur couleur, Coord coord) {
-        super();
+        super(couleur, coord);
     }
             
     @Override
