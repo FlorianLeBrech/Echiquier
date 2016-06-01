@@ -22,9 +22,12 @@ public class Tour extends AbstractPiece {
     public boolean isMoveOk(int xFinal, int yFinal, boolean isCatchOk, boolean isCastlingPossible) {
         if(this.coord.x==xFinal || this.coord.y==yFinal) {
             if(!isCatchOk) {
+                this.move(xFinal, yFinal);
                 return true;
             }
         }
         return false;
     }
+    
+ 
 }
