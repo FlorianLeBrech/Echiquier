@@ -17,7 +17,6 @@ abstract class AbstractPiece implements Pieces {
     public AbstractPiece(Couleur couleur, Coord coord) {
         this.couleur = this.couleur;
         this.coord = coord;
-        capture = false;
     }
 
     public int getX() {
