@@ -69,6 +69,10 @@ public class Jeu implements Game {
         return couleur;
     }
 
+    public List<Pieces> getPieces() {
+        return pieces;
+    }
+
     
 
     @Override
