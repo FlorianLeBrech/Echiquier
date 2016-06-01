@@ -45,7 +45,7 @@ abstract class AbstractPiece implements Pieces {
         return this.couleur;
     }
 
-    public java.lang.String getName() {
+    public String toString() {
         return this.getClass().toString();      // a changer peut etre 
     }
 
@@ -63,5 +63,7 @@ abstract class AbstractPiece implements Pieces {
     }
 
     public abstract boolean isMoveOk(int xFinal, int yFinal, boolean isCatchOk, boolean isCastlingPossible);
+    
+  
 
 }

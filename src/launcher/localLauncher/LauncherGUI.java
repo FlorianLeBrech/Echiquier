@@ -19,7 +19,7 @@ import vue.ChessGameGUI;
  * les échanges passent par le contrôleur (ChessGameControlers)
  * 
  */
-public class LauncherGUI {
+public class LauncherGUI extends JFrame {
 
 	/**
 	 * @param args

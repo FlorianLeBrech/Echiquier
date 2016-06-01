@@ -109,3 +109,4 @@ public class ChessGame extends Observable implements BoardGames{
 		this.notifyObservers(echiquier.getPiecesIHM()); 
 	}
 }
+

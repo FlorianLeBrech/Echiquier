@@ -6,10 +6,17 @@
 
 package vue;
 
+import controler.ChessGameControlers;
+import java.awt.Dimension;
+
 /**
  *
  * @author hugo.talbot
  */
 public class ChessGameGUI {
+
+    public ChessGameGUI(String jeu_déchec, ChessGameControlers chessGameControler, Dimension dim) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
