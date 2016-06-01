@@ -6,6 +6,9 @@
 
 package model;
 
+import java.util.List;
+import java.util.*;
+
 /**
  *
  * @author hugo.talbot
@@ -38,6 +41,11 @@ public class Echiquier implements BoardGames {
            
     public List <PieceIHMs> getPiecesIHM() {
         
+        //créer une liste de piècesHIM et le remplir avec les listes de pièces de jeublanc et jeunoir
+        List<PieceIHMs> listeIHM = new LinkedList<PieceIHMs>();
+        listeIHM.addAll(jeublanc.getPiecesIHM());
+                
+        return listeIHM;
     }
            
 
@@ -54,25 +62,8 @@ public class Echiquier implements BoardGames {
         sinon déplacer la piéce -->true
         */
                 
-        if(jeucourant.findPiece(xInit, yInit)==null) {
-            return false;
-        }
-        if(Coord.coordonnees_valides(xFinal, yFinal)==false || (xInit==xFinal && yInit==yFinal)) {
-            return false;
-        }
-        if(jeucourant.findPiece(xInit, yInit).isMoveOK(xFinal, yFinal)==false) {
-            return false;
-        }
-        //manque le if pour pièce sur la trajectoire
-        if(jeucourant.findPiece(xInit, yInit).isPieceHere(xFinal, yFinal)) {
-            if(jeucourant.findPiece(xInit, yInit).getCouleur()==jeucourant.couleur) {
-                return false; //manque tentative de roque du roi
-            }
-            else {
-                
-            }
-        }
-        
+        return jeucourant.isMoveOk(xInit, yInit, xFinal, yFinal, true, jeucourant.castlingPossible);
+          
     }
 
     public static void	main(java.lang.String[] args) {
@@ -82,11 +73,11 @@ public class Echiquier implements BoardGames {
            
 
     public void switchJoueur() {
-        if(this.jeucourant==Couleur.BLANC) {
-            this.jeucourant=Couleur.NOIR;
+        if(this.jeucourant.getCouleur()==Couleur.BLANC) {
+            this.jeucourant=jeunoir;
         }
         else {
-            this.jeucourant=Couleur.BLANC;
+            this.jeucourant=jeublanc;
         }
     }
           
@@ -98,7 +89,11 @@ public class Echiquier implements BoardGames {
 
     @Override
     public boolean move(int xInit, int yInit, int xFinal, int yFinal) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(this.isMoveOk(xInit, yInit, xFinal, yFinal)) {
+            jeucourant.move(xInit, yInit, xFinal, yFinal);
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -108,7 +103,7 @@ public class Echiquier implements BoardGames {
 
     @Override
     public Couleur getColorCurrentPlayer() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return jeucourant.getCouleur();
     }
 
     @Override
