@@ -9,6 +9,34 @@ package model;
  *
  * @author Florian
  */
-public class Pion {
+public class Pion extends AbstractPiece {
+
+    public Pion(Couleur couleur, Coord coord) {
+        super(couleur, coord);
+    }
+
+     @Override
+    public boolean isMoveOk(int xFinal, int yFinal, boolean isCatchOk, boolean isCastlingPossible) {
+        if(Coord.coordonnees_valides(xFinal, yFinal)) {
+            //System.out.println(this.getX()!=xFinal);
+            if((this.getX()==xFinal && this.getY()!=yFinal) || (this.getX()!=xFinal && this.getY()==yFinal)) {
+                
+                    return true;
+                
+            }
+        }
+        
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return this.getCouleur()+"_Pi";
+    }
+
+    @Override
+    public String getName() {
+        return this.getCouleur()+"_Pi";
+    }
     
 }
