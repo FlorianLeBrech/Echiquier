@@ -18,7 +18,8 @@ public class Jeu implements Game {
 
     Couleur couleur;
     List<Pieces> pieces;
-
+    boolean castlingPossible;
+        
     public Jeu(Couleur couleur) {
         this.pieces = ChessPiecesFactory.newPieces(couleur);
     }
@@ -40,6 +41,17 @@ public class Jeu implements Game {
             }
         }
         return null;
+    }
+
+    public void setCastlingPossible() 
+    {
+        return castlingPossible;
+        
+    }
+    
+        public void getCastlingPossible() 
+    {
+        return castlingPossible;        
     }
 
     @Override
