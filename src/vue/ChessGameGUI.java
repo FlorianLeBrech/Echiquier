@@ -15,8 +15,12 @@ import java.awt.Dimension;
  */
 public class ChessGameGUI {
 
+     String jeu_echec;
+     ChessGameControlers chessGameControler;
+     Dimension dim;
     public ChessGameGUI(String jeu_déchec, ChessGameControlers chessGameControler, Dimension dim) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    
     }
     
 }

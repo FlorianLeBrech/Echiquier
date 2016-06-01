@@ -36,7 +36,7 @@ public class Roi extends AbstractPiece {
 
     @Override
     public String getName() {
-        return this.getCouleur()+"_Ro";
+        return "_Ro";
     }
     
     

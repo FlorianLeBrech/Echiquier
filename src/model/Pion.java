@@ -36,7 +36,7 @@ public class Pion extends AbstractPiece {
 
     @Override
     public String getName() {
-        return this.getCouleur()+"_Pi";
+        return "_Pi";
     }
     
 }

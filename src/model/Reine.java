@@ -37,7 +37,7 @@ public class Reine extends AbstractPiece {
 
     @Override
     public String getName() {
-        return this.getCouleur()+"_Re";
+        return "_Re";
     }
     
     
