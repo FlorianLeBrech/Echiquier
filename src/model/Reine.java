@@ -9,6 +9,36 @@ package model;
  *
  * @author Florian
  */
-public class Reine {
+public class Reine extends AbstractPiece {
+
+    public Reine(Couleur couleur, Coord coord) {
+        super(couleur, coord);
+    }
+
+   
+     @Override
+    public boolean isMoveOk(int xFinal, int yFinal, boolean isCatchOk, boolean isCastlingPossible) {
+        if(Coord.coordonnees_valides(xFinal, yFinal)) {
+            //System.out.println(this.getX()!=xFinal);
+            if((this.getX()==xFinal && this.getY()!=yFinal) || (this.getX()!=xFinal && this.getY()==yFinal)) {
+                
+                    return true;
+                
+            }
+        }
+        
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return this.getCouleur()+"_Re";
+    }
+
+    @Override
+    public String getName() {
+        return this.getCouleur()+"_Re";
+    }
+    
     
 }
