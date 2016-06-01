@@ -54,15 +54,15 @@ public class Jeu implements Game {
 
     @Override
     public boolean isMoveOk(int xInit, int yInit, int xFinal, int yFinal, boolean isCatchOk, boolean isCastlingPossible) {
-      if (  findPiece(xInit, yInit)!=null){
-         return  findPiece(xInit, yInit).isMoveOk(xFinal, yFinal, isCatchOk, isCastlingPossible)
-      }
-      return false;
+        if (findPiece(xInit, yInit) != null) {
+            return findPiece(xInit, yInit).isMoveOk(xFinal, yFinal, isCatchOk, isCastlingPossible)
+        }
+        return false;
     }
 
     @Override
     public boolean move(int xInit, int yInit, int xFinal, int yFinal) {
-          findPiece(xInit, yInit).move(xFinal, yFinal);
+        findPiece(xInit, yInit).move(xFinal, yFinal);
         return false;
     }
 
