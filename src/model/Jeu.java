@@ -36,7 +36,7 @@ public class Jeu implements Game {
     }
 
     private Pieces findPiece(int x, int y) {
-        for (int i; i < pieces.size(); i++) {
+        for (int i=0; i < pieces.size(); i++) {
             if (pieces.get(i).getX() == x && pieces.get(i).getY() == y) {
                 return pieces.get(i);
             }
@@ -57,7 +57,7 @@ public class Jeu implements Game {
 
     @Override
     public boolean isPieceHere(int x, int y) {
-        for (int i; i < pieces.size(); i++) {
+        for (int i=0; i < pieces.size(); i++) {
             if (pieces.get(i).getX() == x && pieces.get(i).getY() == y) {
                 return true;
             }
