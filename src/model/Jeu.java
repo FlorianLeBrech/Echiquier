@@ -22,6 +22,7 @@ public class Jeu implements Game {
         
     public Jeu(Couleur couleur) {
         this.pieces = ChessPiecesFactory.newPieces(couleur);
+        this.castlingPossible=false;
     }
 
     public static void main(String[] args) {
