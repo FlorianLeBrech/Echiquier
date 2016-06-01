@@ -15,11 +15,12 @@ public class Tour extends AbstractPiece {
     Coord coord;
     
     Tour(Couleur couleur, Coord coord) {
-        super(couleur, coord);
+        super();
     }
             
+    @Override
     public boolean isMoveOk(int xFinal, int yFinal, boolean isCatchOk, boolean isCastlingPossible) {
-        if(this.x==xFinal || this.y==yFinal) {
+        if(this.coord.x==xFinal || this.coord.y==yFinal) {
             if(!isCatchOk) {
                 return true;
             }
