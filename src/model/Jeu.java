@@ -16,8 +16,8 @@ import tools.ChessPiecesFactory;
  */
 public class Jeu implements Game {
 
-    Couleur couleur;
-    List<Pieces> pieces;
+    private Couleur couleur;
+    private List<Pieces> pieces;
     boolean castlingPossible;
         
     public Jeu(Couleur couleur) {
