@@ -37,20 +37,20 @@ public class Jeu implements Game {
 
     private Pieces findPiece(int x, int y) {
         for (int i; i < pieces.size(); i++) {
-            if (pieces.get(i).getX() == x && pieces.get(i).getY(i) == y) {
+            if (pieces.get(i).getX() == x && pieces.get(i).getY() == y) {
                 return pieces.get(i);
             }
         }
         return null;
     }
 
-    public void setCastlingPossible() 
+    public boolean setCastlingPossible() 
     {
         return castlingPossible;
         
     }
     
-        public void getCastlingPossible() 
+        public boolean getCastlingPossible() 
     {
         return castlingPossible;        
     }
@@ -58,7 +58,7 @@ public class Jeu implements Game {
     @Override
     public boolean isPieceHere(int x, int y) {
         for (int i; i < pieces.size(); i++) {
-            if (pieces.get(i).getX() == x && pieces.get(i).getY(i) == y) {
+            if (pieces.get(i).getX() == x && pieces.get(i).getY() == y) {
                 return true;
             }
         }
@@ -74,7 +74,7 @@ public class Jeu implements Game {
     @Override
     public boolean isMoveOk(int xInit, int yInit, int xFinal, int yFinal, boolean isCatchOk, boolean isCastlingPossible) {
         if (findPiece(xInit, yInit) != null) {
-            return findPiece(xInit, yInit).isMoveOk(xFinal, yFinal, isCatchOk, isCastlingPossible)
+            return findPiece(xInit, yInit).isMoveOk(xFinal, yFinal, isCatchOk, isCastlingPossible);
         }
         return false;
     }
