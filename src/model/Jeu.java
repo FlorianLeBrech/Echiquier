@@ -65,6 +65,12 @@ public class Jeu implements Game {
         return false;
     }
 
+    public Couleur getCouleur() {
+        return couleur;
+    }
+
+    
+
     @Override
     public boolean isMoveOk(int xInit, int yInit, int xFinal, int yFinal, boolean isCatchOk, boolean isCastlingPossible) {
         if (findPiece(xInit, yInit) != null) {
