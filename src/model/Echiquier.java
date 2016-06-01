@@ -44,6 +44,7 @@ public class Echiquier implements BoardGames {
         //créer une liste de piècesHIM et le remplir avec les listes de pièces de jeublanc et jeunoir
         List<PieceIHMs> listeIHM = new LinkedList<PieceIHMs>();
         listeIHM.addAll(jeublanc.getPiecesIHM());
+        listeIHM.addAll(jeunoir.getPiecesIHM());
                 
         return listeIHM;
     }
