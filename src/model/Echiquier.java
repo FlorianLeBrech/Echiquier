@@ -63,7 +63,11 @@ public class Echiquier implements BoardGames {
         sinon déplacer la piéce -->true
         */
                 
-        return jeucourant.isMoveOk(xInit, yInit, xFinal, yFinal, true, jeucourant.castlingPossible);
+        if(jeucourant.isMoveOk(xInit, yInit, xFinal, yFinal, true, jeucourant.castlingPossible)) {
+            message="OK";
+            return true;
+        }
+        return false;
           
     }
 
