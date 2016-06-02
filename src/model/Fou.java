@@ -31,7 +31,7 @@ public class Fou extends AbstractPiece {
 
     @Override
     public String toString() {
-        return this.getCouleur()+"Fou";
+        return "Fou";
     }
 
     @Override

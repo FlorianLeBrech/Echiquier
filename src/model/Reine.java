@@ -32,7 +32,7 @@ public class Reine extends AbstractPiece {
 
     @Override
     public String toString() {
-        return this.getCouleur()+"Reine";
+        return "Reine";
     }
 
     @Override
