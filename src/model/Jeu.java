@@ -92,7 +92,7 @@ public class Jeu implements Game {
     @Override
     public boolean move(int xInit, int yInit, int xFinal, int yFinal) {//comme au dessus
         findPiece(xInit, yInit).move(xFinal, yFinal);
-        return false;
+        return true;
     }
 
     @Override
@@ -115,7 +115,12 @@ public class Jeu implements Game {
     }
 
     public Couleur getPieceColor(int x, int y) {
-        return this.findPiece(x, y).getCouleur();
+        Pieces p = findPiece(x, y);
+        if (p != null) {
+            return p.getCouleur();
+        } else {
+            return null;
+        }
 
     }
 
