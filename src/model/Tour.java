@@ -36,7 +36,7 @@ public class Tour extends AbstractPiece {
 
     @Override
     public String toString() {
-        return this.getCouleur()+"_To";
+        return "Tour";
     }
 
     @Override
