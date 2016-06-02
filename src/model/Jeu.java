@@ -64,7 +64,7 @@ public class Jeu implements Game {
     }
 
     public Couleur getCouleur() {
-        return couleur;
+        return this.couleur;
     }
 
     public List<Pieces> getPieces() {
