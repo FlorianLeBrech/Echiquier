@@ -11,6 +11,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.ImageIcon;
@@ -20,6 +21,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import model.Couleur;
 import model.PieceIHMs;
+import model.Pieces;
 import model.observable.ChessGame;
 import tools.ChessImageProvider;
 import tools.ChessPieceImage;
@@ -62,7 +64,6 @@ public class ChessGameGUI extends JFrame implements Observer {
             square.setPreferredSize(new Dimension(10, 10));
             square.setSize(10, 10);
             chessBoard.add(square);
-
             int row = (i / 8) % 2;
             if (row == 0) {
                 square.setBackground(i % 2 == 0 ? Color.black : Color.white);
@@ -71,15 +72,22 @@ public class ChessGameGUI extends JFrame implements Observer {
             }
         }
 
-        chessBoard.updateUI();
-        chessBoard.validate();
-        chessBoard.revalidate();
-
     }
 
     @Override
     public void update(Observable o, Object arg) {
+        //chessBoard.removeAll();
         List<PieceIHMs> list = (List<PieceIHMs>) arg;
+        ListIterator<PieceIHMs> itr = list.listIterator();
+        while (itr.hasNext()) {
+            PieceIHMs p = itr.next();
+            JLabel piece = new JLabel(new ImageIcon(ChessImageProvider.getImageFile(p.toString(), p.getCouleur())));
+            System.out.println(ChessImageProvider.getImageFile(p.toString(), p.getCouleur()));
+            JPanel panel = (JPanel) chessBoard.getComponent(p.getX() + p.getY() * 8);
+            panel.add(piece);
+        }
+        chessBoard.repaint();
+
     }
 
 }

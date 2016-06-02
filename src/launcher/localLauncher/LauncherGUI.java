@@ -37,7 +37,7 @@ public class LauncherGUI extends JFrame {
 		chessGameControler = new ChessGameControler(chessGame);
 		
 		frame = new ChessGameGUI("Jeu d'échec", chessGameControler,  dim);
-		//chessGame.addObserver((Observer) frame);
+		chessGame.addObserver((Observer) frame);
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//frame.setPreferredSize(dim);
