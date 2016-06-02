@@ -109,7 +109,14 @@ public class Echiquier implements BoardGames {
 
     @Override
     public Couleur getPieceColor(int x, int y) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(this.jeublanc.isPieceHere(x, y)) {
+            return Couleur.BLANC;
+        }
+        if(this.jeunoir.isPieceHere(x, y)) {
+            return Couleur.NOIR;
+        }
+        return  null;
+       
     }
     
     
