@@ -20,7 +20,6 @@ public class Pion extends AbstractPiece {
         if (Coord.coordonnees_valides(xFinal, yFinal)) {
             //System.out.println(this.getX()!=xFinal);
             if ((this.getX() == xFinal && this.getY() != yFinal) || (this.getX() != xFinal && this.getY() == yFinal)) {
-
                 return true;
 
             }
