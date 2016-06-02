@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
 import java.util.List;
@@ -19,13 +18,19 @@ public class Echiquier implements BoardGames {
     protected Jeu jeunoir;
     protected Jeu jeucourant;
     private String message;
+    private boolean isMoveOK;
+
+    public static void main(java.lang.String[] args) {
+        Echiquier echiquier = new Echiquier();
+        System.out.println(echiquier);
+    }
 
     public Echiquier() {
-        this.jeublanc=new Jeu(Couleur.BLANC);
-        this.jeunoir=new Jeu(Couleur.NOIR);
-        this.jeucourant=jeublanc;
+        this.jeublanc = new Jeu(Couleur.BLANC);
+        this.jeunoir = new Jeu(Couleur.NOIR);
+        this.jeucourant = jeublanc;
     }
-    
+
     private void setMessage(String message) {
         this.message = message;
     }
@@ -33,24 +38,15 @@ public class Echiquier implements BoardGames {
     public String getMessage() {
         return message;
     }
-    
 
-           
-
-
-           
-    public List <PieceIHMs> getPiecesIHM() {
-        
+    public List<PieceIHMs> getPiecesIHM() {
         //créer une liste de piècesHIM et le remplir avec les listes de pièces de jeublanc et jeunoir
         List<PieceIHMs> listeIHM = new LinkedList<PieceIHMs>();
         listeIHM.addAll(jeublanc.getPiecesIHM());
         listeIHM.addAll(jeunoir.getPiecesIHM());
-                
         return listeIHM;
     }
-           
 
-           
     public boolean isMoveOk(int xInit, int yInit, int xFinal, int yFinal) {
         /*
         s'il n'existe pas de piece du jeu courant aux coordonnées initiales --> false,
@@ -61,40 +57,34 @@ public class Echiquier implements BoardGames {
             si elle est de la méme couleur --> false ou tentative roque du roi,
             sinon : prendre la piéce intermédiaire (vigilance pour le cas du pion) et déplacer la piéce -->true,
         sinon déplacer la piéce -->true
-        */
-                
-        if(jeucourant.isMoveOk(xInit, yInit, xFinal, yFinal, true, jeucourant.castlingPossible)) {
-            message="OK";
+         */
+        if (jeucourant.isMoveOk(xInit, yInit, xFinal, yFinal, true, jeucourant.castlingPossible)) {
+            message = "OK";
+            this.isMoveOK = true;
             return true;
+        } else {
+            message = "Non OK";
         }
+        this.isMoveOK = false;
         return false;
-          
-    }
 
-    public static void	main(java.lang.String[] args) {
-        Echiquier echiquier = new Echiquier();
-        System.out.println(echiquier);
     }
-           
 
     public void switchJoueur() {
-        if(this.jeucourant.getCouleur()==Couleur.BLANC) {
-            this.jeucourant=jeunoir;
-        }
-        else {
-            this.jeucourant=jeublanc;
+        if (this.jeucourant.getCouleur() == Couleur.BLANC) {
+            this.jeucourant = jeunoir;
+        } else {
+            this.jeucourant = jeublanc;
         }
     }
-          
+
     public String toString() {
-        return jeublanc+"\n"+jeunoir;
+        return jeublanc + "\n" + jeunoir;
     }
-    
-    
 
     @Override
     public boolean move(int xInit, int yInit, int xFinal, int yFinal) {
-        if(this.isMoveOk(xInit, yInit, xFinal, yFinal)) {
+        if (this.isMoveOK) {
             jeucourant.move(xInit, yInit, xFinal, yFinal);
             return true;
         }
@@ -113,16 +103,7 @@ public class Echiquier implements BoardGames {
 
     @Override
     public Couleur getPieceColor(int x, int y) {
-        if(this.jeublanc.isPieceHere(x, y)) {
-            return Couleur.BLANC;
-        }
-        if(this.jeunoir.isPieceHere(x, y)) {
-            return Couleur.NOIR;
-        }
-        return  null;
-       
+      return jeucourant.getPieceColor(x, y);
     }
-    
-    
-    
+
 }

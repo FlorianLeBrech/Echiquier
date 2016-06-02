@@ -8,6 +8,7 @@ package model;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.ListIterator;
 import tools.ChessPiecesFactory;
 
 /**
@@ -23,7 +24,7 @@ public class Jeu implements Game {
     public Jeu(Couleur couleur) {
         this.pieces = ChessPiecesFactory.newPieces(couleur);
         this.castlingPossible = false;
-        this.couleur=couleur;
+        this.couleur = couleur;
     }
 
     public static void main(String[] args) {
@@ -36,12 +37,20 @@ public class Jeu implements Game {
         return "Jeu{" + "pieces=" + pieces + '}';
     }
 
-    private Pieces findPiece(int x, int y) {
+    private Pieces findPiece(int x, int y) { // a changer 
+        ListIterator<Pieces> itr = pieces.listIterator();
+        while (itr.hasNext()) {
+            Pieces p = itr.next();
+            if (p.getX() == x && p.getY() == y) {
+                return p;
+            }
+        }
+        /*
         for (int i = 0; i < pieces.size(); i++) {
             if (pieces.get(i).getX() == x && pieces.get(i).getY() == y) {
                 return pieces.get(i);
             }
-        }
+        }*/
         return null;
     }
 
@@ -55,13 +64,12 @@ public class Jeu implements Game {
     }
 
     @Override
-    public boolean isPieceHere(int x, int y) {
-        for (int i = 0; i < pieces.size(); i++) {
-            if (pieces.get(i).getX() == x && pieces.get(i).getY() == y) {
-                return true;
-            }
+    public boolean isPieceHere(int x, int y) { //a changer 
+        if (this.findPiece(x, y) != null) {
+            return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
     public Couleur getCouleur() {
@@ -74,14 +82,15 @@ public class Jeu implements Game {
 
     @Override
     public boolean isMoveOk(int xInit, int yInit, int xFinal, int yFinal, boolean isCatchOk, boolean isCastlingPossible) {
-        if (findPiece(xInit, yInit) != null) {
-            return findPiece(xInit, yInit).isMoveOk(xFinal, yFinal, isCatchOk, isCastlingPossible);
+        Pieces p;
+        if ((p = findPiece(xInit, yInit)) != null) {
+            return p.isMoveOk(xFinal, yFinal, isCatchOk, isCastlingPossible);
         }
         return false;
     }
 
     @Override
-    public boolean move(int xInit, int yInit, int xFinal, int yFinal) {
+    public boolean move(int xInit, int yInit, int xFinal, int yFinal) {//comme au dessus
         findPiece(xInit, yInit).move(xFinal, yFinal);
         return false;
     }
@@ -94,9 +103,9 @@ public class Jeu implements Game {
     public List<PieceIHMs> getPiecesIHM() {
         PieceIHMs newPieceIHM = null;
         List<PieceIHMs> list = new LinkedList<PieceIHMs>();
-        
+
         for (Pieces piece : pieces) {
-        //si la pièce est toujours en jeu 
+            //si la pièce est toujours en jeu 
             if (piece.getX() != -1) {
                 newPieceIHM = new PieceIHM(piece);
                 list.add(newPieceIHM);
@@ -104,4 +113,10 @@ public class Jeu implements Game {
         }
         return list;
     }
+
+    public Couleur getPieceColor(int x, int y) {
+        return this.findPiece(x, y).getCouleur();
+
+    }
+
 }
