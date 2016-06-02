@@ -30,12 +30,13 @@ public class Cavalier extends AbstractPiece {
 
     @Override
     public String toString() {
-        return "Cavalier";
+        return "Ca";  
     }
 
     @Override
     public String getName() {
-        return "Ca";
+      return "Cavalier";
+
     }
     
     

@@ -36,12 +36,13 @@ public class Tour extends AbstractPiece {
 
     @Override
     public String toString() {
-        return "Tour";
+         return "To";
+        
     }
 
     @Override
     public String getName() {
-        return "To";
+       return "Tour";
     }
     
  

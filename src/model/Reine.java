@@ -32,12 +32,13 @@ public class Reine extends AbstractPiece {
 
     @Override
     public String toString() {
-        return "Reine";
+        return "Re";
     }
 
     @Override
     public String getName() {
-        return "Re";
+        
+        return "Reine";
     }
     
     

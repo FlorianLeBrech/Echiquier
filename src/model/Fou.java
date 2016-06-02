@@ -31,12 +31,13 @@ public class Fou extends AbstractPiece {
 
     @Override
     public String toString() {
-        return "Fou";
+        return "Fo";
     }
 
     @Override
     public String getName() {
-        return "Fo";
+        return "Fou";
+        
     }
     
     
