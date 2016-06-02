@@ -30,7 +30,7 @@ public class Cavalier extends AbstractPiece {
 
     @Override
     public String toString() {
-        return this.getCouleur()+"_Ca";
+        return this.getCouleur()+"Cavalier";
     }
 
     @Override
