@@ -58,7 +58,7 @@ public class Echiquier implements BoardGames {
             sinon : prendre la piéce intermédiaire (vigilance pour le cas du pion) et déplacer la piéce -->true,
         sinon déplacer la piéce -->true
          */
-
+        boolean piecefinal=false;
         boolean pieceIntermediaire = false;
         //piece intermédiaire
         //on vérifie s'il n'y a pas de pièce sur le déplacement
@@ -93,10 +93,10 @@ public class Echiquier implements BoardGames {
             j += sensV;
         }
     if (jeublanc.isPieceHere(xFinal, yFinal ) == true || jeunoir.isPieceHere(xFinal, yFinal) == true) {
-            pieceIntermediaire=true;
+           piecefinal=true;
     }
 
-        if (jeucourant.isMoveOk(xInit, yInit, xFinal, yFinal, pieceIntermediaire, jeucourant.castlingPossible)) {
+        if (jeucourant.isMoveOk(xInit, yInit, xFinal, yFinal, pieceIntermediaire, jeucourant.castlingPossible)&& piecefinal==true) {
             message = "OK";
             this.isMoveOK = true;
             return true;

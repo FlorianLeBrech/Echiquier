@@ -87,8 +87,6 @@ public class Jeu implements Game {
         p2 = findPiece(xFinal, yFinal);
 
         if ((p = findPiece(xInit, yInit)) != null && p2 == null) {// si on bouge sur une case différente de nos pieces  
-          /*  if (p2.getName() == "Tour") {
-                if (p.getName() == "Roi") {*/
                     return p.isMoveOk(xFinal, yFinal, isCatchOk, isCastlingPossible);
               //  }
           //  }
