@@ -100,10 +100,6 @@ public class Echiquier implements BoardGames {
             message = "OK";
             this.isMoveOK = true;
             return true;
-        } else if (piecefinal == true) {
-            message = "OK";
-            this.isMoveOK = true;
-            return true;    
         } else {
             message = "Non OK";
         }
