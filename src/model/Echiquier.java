@@ -96,7 +96,7 @@ public class Echiquier implements BoardGames {
            piecefinal=true;
     }
 
-        if (jeucourant.isMoveOk(xInit, yInit, xFinal, yFinal, pieceIntermediaire, jeucourant.castlingPossible)&& piecefinal==true) {
+        if (jeucourant.isMoveOk(xInit, yInit, xFinal, yFinal, pieceIntermediaire, jeucourant.castlingPossible) || piecefinal==true) {
             message = "OK";
             this.isMoveOK = true;
             return true;
