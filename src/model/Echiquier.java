@@ -81,13 +81,13 @@ public class Echiquier implements BoardGames {
         i = sensH;
         j = sensV;
         while (Math.abs(i) < dh || Math.abs(j) < dv) {
-            if (jeublanc.isPieceHere(xInit+i, yInit+j)== true ||jeunoir.isPieceHere(xInit+i, yInit+j)) {
-                pieceIntermediaire=true; //on ne peut pas déplacer la pièce
+            if (jeublanc.isPieceHere(xInit + i, yInit + j) == true || jeunoir.isPieceHere(xInit + i, yInit + j)) {
+                pieceIntermediaire = true; //on ne peut pas déplacer la pièce
             }
             i += sensH;
             j += sensV;
         }
-        
+
         if (jeucourant.isMoveOk(xInit, yInit, xFinal, yFinal, pieceIntermediaire, jeucourant.castlingPossible)) {
             message = "OK";
             this.isMoveOK = true;
@@ -115,7 +115,6 @@ public class Echiquier implements BoardGames {
     @Override
     public boolean move(int xInit, int yInit, int xFinal, int yFinal) {
         if (this.isMoveOK) {
-
             if (jeucourant.move(xInit, yInit, xFinal, yFinal)) {
                 if (jeucourant.getCouleur() == Couleur.BLANC) {
                     jeunoir.capture(xFinal, yFinal);
