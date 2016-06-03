@@ -13,32 +13,32 @@ import java.util.*;
  * @author hugo.talbot
  */
 public class Echiquier implements BoardGames {
-
+    
     protected Jeu jeublanc;
     protected Jeu jeunoir;
     protected Jeu jeucourant;
     private String message;
     private boolean isMoveOK;
-
+    
     public static void main(java.lang.String[] args) {
         Echiquier echiquier = new Echiquier();
         System.out.println(echiquier);
     }
-
+    
     public Echiquier() {
         this.jeublanc = new Jeu(Couleur.BLANC);
         this.jeunoir = new Jeu(Couleur.NOIR);
         this.jeucourant = jeublanc;
     }
-
+    
     private void setMessage(String message) {
         this.message = message;
     }
-
+    
     public String getMessage() {
         return message;
     }
-
+    
     public List<PieceIHMs> getPiecesIHM() {
         //créer une liste de piècesHIM et le remplir avec les listes de pièces de jeublanc et jeunoir
         List<PieceIHMs> listeIHM = new LinkedList<PieceIHMs>();
@@ -46,7 +46,7 @@ public class Echiquier implements BoardGames {
         listeIHM.addAll(jeunoir.getPiecesIHM());
         return listeIHM;
     }
-
+    
     public boolean isMoveOk(int xInit, int yInit, int xFinal, int yFinal) {
         /*
         s'il n'existe pas de piece du jeu courant aux coordonnées initiales --> false,
@@ -58,7 +58,7 @@ public class Echiquier implements BoardGames {
             sinon : prendre la piéce intermédiaire (vigilance pour le cas du pion) et déplacer la piéce -->true,
         sinon déplacer la piéce -->true
          */
-
+        
         boolean pieceIntermediaire = false;
         //piece intermédiaire
         //on vérifie s'il n'y a pas de pièce sur le déplacement
@@ -88,7 +88,7 @@ public class Echiquier implements BoardGames {
             i += sensH;
             j += sensV;
         }
-
+        
         if (jeucourant.isMoveOk(xInit, yInit, xFinal, yFinal, pieceIntermediaire, jeucourant.castlingPossible)) {
             message = "OK";
             this.isMoveOK = true;
@@ -98,9 +98,9 @@ public class Echiquier implements BoardGames {
         }
         this.isMoveOK = false;
         return false;
-
+        
     }
-
+    
     public void switchJoueur() {
         if (this.jeucourant.getCouleur() == Couleur.BLANC) {
             this.jeucourant = jeunoir;
@@ -108,11 +108,11 @@ public class Echiquier implements BoardGames {
             this.jeucourant = jeublanc;
         }
     }
-
+    
     public String toString() {
         return jeublanc + "\n" + jeunoir;
     }
-
+    
     @Override
     public boolean move(int xInit, int yInit, int xFinal, int yFinal) {
         if (this.isMoveOK) {
@@ -127,20 +127,20 @@ public class Echiquier implements BoardGames {
         }
         return false;
     }
-
+    
     @Override
     public boolean isEnd() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
     @Override
     public Couleur getColorCurrentPlayer() {
         return jeucourant.getCouleur();
     }
-
+    
     @Override
     public Couleur getPieceColor(int x, int y) {
         return jeucourant.getPieceColor(x, y);
     }
-
+    
 }
