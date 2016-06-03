@@ -18,7 +18,7 @@ public class Roi extends AbstractPiece {
     @Override
     public boolean isMoveOk(int xFinal, int yFinal, boolean isCatchOk, boolean isCastlingPossible) {
         if (Coord.coordonnees_valides(xFinal, yFinal)) {
-            //System.out.println(this.getX()!=xFinal);
+
             if ((Math.abs(xFinal - this.getX())<=1) && (Math.abs(yFinal - this.getY())<=1)) {
                 return true;
             }
