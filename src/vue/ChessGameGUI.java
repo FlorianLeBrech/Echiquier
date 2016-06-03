@@ -24,6 +24,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
+import model.Coord;
 import model.Couleur;
 import model.PieceIHMs;
 import model.Pieces;
@@ -40,6 +41,8 @@ public class ChessGameGUI extends JFrame implements Observer, MouseListener {
     String jeu_echec;
     ChessGameControlers chessGameControler;
     Dimension dim;
+    Coord coordDep;
+    Coord coordArr;
 
     private JLayeredPane layeredPane;
     private JPanel chessBoard;
@@ -92,62 +95,71 @@ public class ChessGameGUI extends JFrame implements Observer, MouseListener {
         }
         chessBoard.validate();
         chessBoard.repaint();
+    }
+
+    public void mousePressed(MouseEvent e) {
+        chessPiece = null;
+
+        this.coordDep = new Coord(e.getX() * 8 / dim.width, e.getY() * 8 / dim.height);
+        Component c = chessBoard.findComponentAt(e.getX(), e.getY());
+        if (chessGameControler.isPlayerOK(this.coordDep)) {
+            if (c instanceof JPanel) {
+                return;
+            }
+
+            Point parentLocation = c.getParent().getLocation();
+            xAdjustment = parentLocation.x - e.getX();
+            yAdjustment = parentLocation.y - e.getY();
+            chessPiece = (JLabel) c;
+            chessPiece.setLocation(e.getX() + xAdjustment, e.getY() + yAdjustment);
+            chessPiece.setSize(chessPiece.getWidth(), chessPiece.getHeight());
+            layeredPane.add(chessPiece, JLayeredPane.DRAG_LAYER);
+        }
+    }
+
+    //Move the chess piece around
+    public void mouseDragged(MouseEvent me) {
+        if (chessPiece == null) {
+            return;
+        }
+        chessPiece.setLocation(me.getX() + xAdjustment, me.getY() + yAdjustment);
+        setVisible(true);
+    }
+
+    //Drop the chess piece back onto the chess board
+    public void mouseReleased(MouseEvent e) {
+        if (chessPiece == null) {
+            return;
+        }
+        this.coordArr = new Coord(e.getX() * 8 / dim.width, e.getY() * 8 / dim.height);
+        chessGameControler.move(coordDep, coordArr);
+        chessPiece.setVisible(false);
+//        Component c = chessBoard.findComponentAt(e.getX(), e.getY());
+//        if (c instanceof JLabel) {
+//            Container parent = c.getParent();
+//            parent.remove(0);
+//            parent.add(chessPiece);
+//        } else {
+//            Container parent = (Container) c;
+//            parent.add(chessPiece);
+//        }
+//
+//        chessPiece.setVisible(true);
+    }
+
+    public void mouseClicked(MouseEvent e) {
 
     }
-public void mousePressed(MouseEvent e){
-  chessPiece = null;
-  Component c =  chessBoard.findComponentAt(e.getX(), e.getY());
- 
-  if (c instanceof JPanel) 
-  return;
- 
-  Point parentLocation = c.getParent().getLocation();
-  xAdjustment = parentLocation.x - e.getX();
-  yAdjustment = parentLocation.y - e.getY();
-  chessPiece = (JLabel)c;
-  chessPiece.setLocation(e.getX() + xAdjustment, e.getY() + yAdjustment);
-  chessPiece.setSize(chessPiece.getWidth(), chessPiece.getHeight());
-  layeredPane.add(chessPiece, JLayeredPane.DRAG_LAYER);
-  }
- 
-  //Move the chess piece around
-  
-  public void mouseDragged(MouseEvent me) {
-  if (chessPiece == null) return;
- chessPiece.setLocation(me.getX() + xAdjustment, me.getY() + yAdjustment);
- }
- 
-  //Drop the chess piece back onto the chess board
- 
-  public void mouseReleased(MouseEvent e) {
-  if(chessPiece == null) return;
- 
-  chessPiece.setVisible(false);
-  Component c =  chessBoard.findComponentAt(e.getX(), e.getY());
- 
-  if (c instanceof JLabel){
-  Container parent = c.getParent();
-  parent.remove(0);
-  parent.add( chessPiece );
-  }
-  else {
-  Container parent = (Container)c;
-  parent.add( chessPiece );
-  }
- 
-  chessPiece.setVisible(true);
-  }
- 
-  public void mouseClicked(MouseEvent e) {
-  
-  }
-  public void mouseMoved(MouseEvent e) {
- }
-  public void mouseEntered(MouseEvent e){
-  
-  }
-  public void mouseExited(MouseEvent e) {
-  
-  }
+
+    public void mouseMoved(MouseEvent e) {
+    }
+
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    public void mouseExited(MouseEvent e) {
+
+    }
 
 }

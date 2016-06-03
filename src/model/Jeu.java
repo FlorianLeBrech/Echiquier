@@ -91,13 +91,17 @@ public class Jeu implements Game {
 
     @Override
     public boolean move(int xInit, int yInit, int xFinal, int yFinal) {//comme au dessus
-        findPiece(xInit, yInit).move(xFinal, yFinal);
-        return true;
+        return findPiece(xInit, yInit).move(xFinal, yFinal);
     }
 
     @Override
     public boolean capture(int xCatch, int yCatch) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Pieces p = findPiece(xCatch, yCatch);
+        if (p != null) {
+            pieces.remove(p);
+            return true;
+        }
+        return false;
     }
 
     public List<PieceIHMs> getPiecesIHM() {
