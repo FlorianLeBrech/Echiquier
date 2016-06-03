@@ -70,12 +70,12 @@ public class Echiquier implements BoardGames {
         if (xFinal == xInit) {
             sensH = 0;
         } else {
-            sensH = (xFinal - xInit) ;
+            sensH = (xFinal - xInit)/dh ;
         }
         if (yFinal == yInit) {
             sensV = 0;
         } else {
-            sensV = (yFinal - yInit) ;
+            sensV = (yFinal - yInit)/dv ;
         }
         //on fait le parcours de la pièce pour voir si une pièce est rencontrée
         i = sensH;

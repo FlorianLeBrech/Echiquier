@@ -58,7 +58,6 @@ public class Pion extends AbstractPiece {
                     return true;
                 }
             }
-
         }
 
         return false;
