@@ -82,13 +82,18 @@ public class Jeu implements Game {
 
     @Override
     public boolean isMoveOk(int xInit, int yInit, int xFinal, int yFinal, boolean isCatchOk, boolean isCastlingPossible) {
-        Pieces p;
+        Pieces p = findPiece(xInit, yInit);
         Pieces p2;
         p2 = findPiece(xFinal, yFinal);
 
-        if ((p = findPiece(xInit, yInit)) != null && p2 == null) {// si on bouge sur une case différente de nos pieces            
-            return p.isMoveOk(xFinal, yFinal, isCatchOk, isCastlingPossible);
-        } 
+        if ((p = findPiece(xInit, yInit)) != null && p2 == null) {// si on bouge sur une case différente de nos pieces  
+            if (p2.getName() == "Tour") {
+                if (p.getName() == "Roi") {
+                    return p.isMoveOk(xFinal, yFinal, isCatchOk, isCastlingPossible);
+                }
+            }
+        }
+
         /*else if ((p = findPiece(xInit, yInit)).getName() != null && p2 != null) {// cas exceptionnel ou on peut faire le rock // test a ajouter
             if (p.getName() == "Tour" && p2.getName() == "Roi") {
                     return p.isMoveOk(xFinal, yFinal, isCatchOk, isCastlingPossible);
