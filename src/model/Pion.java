@@ -36,20 +36,11 @@ public class Pion extends AbstractPiece {
                     }
                 }
                 else {
-                    if(xFinal-this.getX()==1 || xFinal-this.getX()==-1 || this.getX()==xFinal) {
-                        if(this.getY()==6 && this.getX()==xFinal) { //si on est à la position de début de jeu et qu'on ne compte pas manger une pièce adverse
-                            if(yFinal==this.getY()-1 || yFinal==this.getY()-2) {
-                                return true;
-                            }
-                        }
-                        else {
-                            if(yFinal==this.getY()-1) {
-                                return true;
-                            }
-                        }
+                    if(yFinal==this.getY()-1 && Math.abs(this.getX()-xFinal)==1) {
+                        System.out.println("tamere");
+                        return true;
                     }
-                }
-               
+                }  
             }
             else { //pion NOIR
                 if(!isCatchOk) {
@@ -67,17 +58,8 @@ public class Pion extends AbstractPiece {
                     }
                 }
                 else {
-                    if(xFinal-this.getX()==1 || xFinal-this.getX()==-1 || this.getX()==xFinal) {
-                        if(this.getY()==1 && this.getX()==xFinal) { //si on est à la position de début de jeu et qu'on ne compte pas manger une pièce adverse
-                            if(yFinal==this.getY()+1 || yFinal==this.getY()+2) {
-                                return true;
-                            }
-                        }
-                        else {
-                            if(yFinal==this.getY()+1) {
-                                return true;
-                            }
-                        }
+                    if(yFinal==this.getY()+1 && Math.abs(this.getX()-xFinal)==1) {
+                        return true;
                     }
                 }
             }
