@@ -58,7 +58,37 @@ public class Echiquier implements BoardGames {
             sinon : prendre la piéce intermédiaire (vigilance pour le cas du pion) et déplacer la piéce -->true,
         sinon déplacer la piéce -->true
          */
-        if (jeucourant.isMoveOk(xInit, yInit, xFinal, yFinal, true, jeucourant.castlingPossible)) {
+
+        boolean pieceIntermediaire = false;
+        //piece intermédiaire
+        //on vérifie s'il n'y a pas de pièce sur le déplacement
+        int dh, dv, sensH, sensV, i, j;
+        //on cherche le déplcement en Horizontal et en Vertical
+        dh = Math.abs(xFinal - xInit);
+        dv = Math.abs(yFinal - yInit);
+        //on cherche le sens de déplacement en Horizontal et en Vertical
+        if (xFinal == xInit) {
+            sensH = 0;
+        } else {
+            sensH = (xFinal - yFinal) / dh;
+        }
+        if (yFinal == yInit) {
+            sensV = 0;
+        } else {
+            sensV = (yFinal - yInit) / dv;
+        }
+        //on fait le parcours de la pièce pour voir si une pièce est rencontrée
+        i = sensH;
+        j = sensV;
+        while (Math.abs(i) < dh || Math.abs(j) < dv) {
+            if (jeublanc.isPieceHere(xInit+i, yInit+j)== true) {
+                pieceIntermediaire=true; //on ne peut pas déplacer la pièce
+            }
+            i += sensH;
+            j += sensV;
+        }
+        
+        if (jeucourant.isMoveOk(xInit, yInit, xFinal, yFinal, pieceIntermediaire, jeucourant.castlingPossible)) {
             message = "OK";
             this.isMoveOK = true;
             return true;
@@ -85,12 +115,14 @@ public class Echiquier implements BoardGames {
     @Override
     public boolean move(int xInit, int yInit, int xFinal, int yFinal) {
         if (this.isMoveOK) {
-            
-            if (jeucourant.move(xInit, yInit, xFinal, yFinal))
-                if (jeucourant.getCouleur()==Couleur.BLANC)
-                jeunoir.capture(xFinal, yFinal);
-                else 
-                jeublanc.capture(xFinal, yFinal);
+
+            if (jeucourant.move(xInit, yInit, xFinal, yFinal)) {
+                if (jeucourant.getCouleur() == Couleur.BLANC) {
+                    jeunoir.capture(xFinal, yFinal);
+                } else {
+                    jeublanc.capture(xFinal, yFinal);
+                }
+            }
             return true;
         }
         return false;
@@ -108,7 +140,7 @@ public class Echiquier implements BoardGames {
 
     @Override
     public Couleur getPieceColor(int x, int y) {
-      return jeucourant.getPieceColor(x, y);
+        return jeucourant.getPieceColor(x, y);
     }
 
 }
