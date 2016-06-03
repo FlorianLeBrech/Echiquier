@@ -17,60 +17,53 @@ public class Pion extends AbstractPiece {
 
     @Override
     public boolean isMoveOk(int xFinal, int yFinal, boolean isCatchOk, boolean isCastlingPossible) {
-        if(Coord.coordonnees_valides(xFinal, yFinal)) {
+        if (Coord.coordonnees_valides(xFinal, yFinal)) {
             //System.out.println(this.getX()!=xFinal);
-            
-            if(this.getCouleur()==Couleur.BLANC) {
-                if(!isCatchOk) {
-                    if(this.getX()==xFinal) {
-                        if(this.getY()==6) { //si on est à la position de début de jeu
-                            if(yFinal==this.getY()-1 || yFinal==this.getY()-2) {
-                                return true;
-                            }
-                        }
-                        else {
-                            if(yFinal==this.getY()-1) {
-                                return true;
-                            }
-                        }
-                    }
-                }
-                else {
-                    if(yFinal==this.getY()-1 && Math.abs(this.getX()-xFinal)==1) {
-                        System.out.println("tamere");
-                        return true;
-                    }
-                }  
+
+            if (isCatchOk == true) {
+                System.out.println("test11");
             }
-            else { //pion NOIR
-                if(!isCatchOk) {
-                    if(this.getX()==xFinal) {
-                        if(this.getY()==1) { //si on est à la position de début de jeu
-                            if(yFinal==this.getY()+1 || yFinal==this.getY()+2) {
+            if (this.getCouleur() == Couleur.BLANC) {
+
+                //Cas ou nous ne pouvons pas capturer de pion
+                if (!isCatchOk) {
+                    if (this.getX() == xFinal) {
+                        if (this.getY() == 6) { //si on est à la position de début de jeu
+                            if (yFinal == this.getY() - 1 || yFinal == this.getY() - 2) {
                                 return true;
                             }
-                        }
-                        else {
-                            if(yFinal==this.getY()+1) {
-                                return true;
-                            }
+                        } else if (yFinal == this.getY() - 1) {
+                            return true;
                         }
                     }
+                } // OK 
+                //Cas de isCatchOK=true
+                else if (yFinal == this.getY() - 1 && Math.abs(this.getX() - xFinal) == 1) {
+                    return true;
                 }
-                else {
-                    if(yFinal==this.getY()+1 && Math.abs(this.getX()-xFinal)==1) {
-                        return true;
+
+            } else //pion NOIR
+            {
+                if (!isCatchOk) {
+                    if (this.getX() == xFinal) {
+                        if (this.getY() == 1) { //si on est à la position de début de jeu
+                            if (yFinal == this.getY() + 1 || yFinal == this.getY() + 2) {
+                                return true;
+                            }
+                        } else if (yFinal == this.getY() + 1) {
+                            return true;
+                        }
                     }
+                } else if (yFinal == this.getY() + 1 && Math.abs(this.getX() - xFinal) == 1) {
+                    return true;
                 }
             }
+
         }
-        
+
         return false;
     }
-    
-   
-   
-    
+
     @Override
     public String toString() {
         return "Pi";
