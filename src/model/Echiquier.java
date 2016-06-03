@@ -58,45 +58,12 @@ public class Echiquier implements BoardGames {
             sinon : prendre la piéce intermédiaire (vigilance pour le cas du pion) et déplacer la piéce -->true,
         sinon déplacer la piéce -->true
          */
-        boolean piecefinal = false;
-        boolean pieceIntermediaire = false;
-        //piece intermédiaire
-        //on vérifie s'il n'y a pas de pièce sur le déplacement
-        int dh, dv, sensH, sensV, i, j;
-        //on cherche le déplcement en Horizontal et en Vertical
-        dh = Math.abs(xFinal - xInit);
-        dv = Math.abs(yFinal - yInit);
-        //on cherche le sens de déplacement en Horizontal et en Vertical
-        if (xFinal == xInit) {
-            sensH = 0;
-        } else {
-            sensH = (xFinal - xInit) / dh;
+
+        boolean isCatchOk = false;
+        if (jeublanc.getPieceColor(xFinal, yFinal) != null || jeunoir.getPieceColor(xFinal, yFinal) != null) {
+            isCatchOk = true;
         }
-        if (yFinal == yInit) {
-            sensV = 0;
-        } else {
-            sensV = (yFinal - yInit) / dv;
-        }
-        //on fait le parcours de la pièce pour voir si une pièce est rencontrée
-        i = sensH;
-        j = sensV;
-        System.out.println("test DH= " + dh + "  dv = " + dv);
-
-        System.out.println("test i = " + i + "  j = " + j);
-
-        while (Math.abs(i) < dh || Math.abs(j) < dv) {
-            if (jeublanc.isPieceHere(xInit + i, yInit + j) == true || jeunoir.isPieceHere(xInit + i, yInit + j) == true) {
-                if (xFinal!=xInit+i &&  yFinal!= yInit+j) {
-                    pieceIntermediaire = true; //on ne peut pas déplacer la pièce
-                    break;
-                }
-            }
-            i += sensH;
-            j += sensV;
-
-        }
-
-        if (jeucourant.isMoveOk(xInit, yInit, xFinal, yFinal, pieceIntermediaire, jeucourant.castlingPossible)) {
+        if (jeucourant.isMoveOk(xInit, yInit, xFinal, yFinal, isCatchOk, jeucourant.castlingPossible)) {
             message = "OK";
             this.isMoveOK = true;
             return true;
@@ -123,6 +90,43 @@ public class Echiquier implements BoardGames {
     @Override
     public boolean move(int xInit, int yInit, int xFinal, int yFinal) {
         if (this.isMoveOK) {
+
+            boolean piecefinal = false;
+            boolean pieceIntermediaire = false;
+            //piece intermédiaire
+            //on vérifie s'il n'y a pas de pièce sur le déplacement
+            int dh, dv, sensH, sensV, i, j;
+            //on cherche le déplcement en Horizontal et en Vertical
+            dh = Math.abs(xFinal - xInit);
+            dv = Math.abs(yFinal - yInit);
+            //on cherche le sens de déplacement en Horizontal et en Vertical
+            if (xFinal == xInit) {
+                sensH = 0;
+            } else {
+                sensH = (xFinal - xInit) / dh;
+            }
+            if (yFinal == yInit) {
+                sensV = 0;
+            } else {
+                sensV = (yFinal - yInit) / dv;
+            }
+            //on fait le parcours de la pièce pour voir si une pièce est rencontrée
+            i = sensH;
+            j = sensV;
+            System.out.println("test DH= " + dh + "  dv = " + dv);
+
+            System.out.println("test i = " + i + "  j = " + j);
+
+            while (Math.abs(i) < dh || Math.abs(j) < dv) {
+
+                if (jeublanc.isPieceHere(xInit + i, yInit + j) == true || jeunoir.isPieceHere(xInit + i, yInit + j) == true) {
+                    return false;
+
+                }
+                i += sensH;
+                j += sensV;
+
+            }
             if (jeucourant.move(xInit, yInit, xFinal, yFinal)) {
                 if (jeucourant.getCouleur() == Couleur.BLANC) {
                     jeunoir.capture(xFinal, yFinal);
