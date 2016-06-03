@@ -24,16 +24,9 @@ public class Tour extends AbstractPiece {
     public boolean isMoveOk(int xFinal, int yFinal, boolean isCatchOk, boolean isCastlingPossible) {
         if(Coord.coordonnees_valides(xFinal, yFinal)) {
             if(!isCatchOk) {
-                //System.out.println(this.getX()!=xFinal);
                 if(this.getX()==xFinal || this.getY()==yFinal) {
                     return true;
                 }
-
-                /*if((this.getX()==xFinal && this.getY()!=yFinal) || (this.getX()!=xFinal && this.getY()==yFinal)) {
-
-                        return true;
-
-                }*/
             }
         }
         

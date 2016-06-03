@@ -19,8 +19,10 @@ public class Fou extends AbstractPiece {
     public boolean isMoveOk(int xFinal, int yFinal, boolean isCatchOk, boolean isCastlingPossible) {
         if(Coord.coordonnees_valides(xFinal, yFinal)) {
             //System.out.println(this.getX()!=xFinal);
-            if(Math.abs(xFinal-this.getX())==Math.abs(yFinal-this.getY())) {
-                return true;
+            if (!isCatchOk) {
+                if(Math.abs(xFinal-this.getX())==Math.abs(yFinal-this.getY())) {
+                    return true;
+                }
             }
         }
         
