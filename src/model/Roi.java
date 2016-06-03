@@ -14,32 +14,29 @@ public class Roi extends AbstractPiece {
     public Roi(Couleur couleur, Coord coord) {
         super(couleur, coord);
     }
-            
+
     @Override
     public boolean isMoveOk(int xFinal, int yFinal, boolean isCatchOk, boolean isCastlingPossible) {
-        if(Coord.coordonnees_valides(xFinal, yFinal)) {
+        if (Coord.coordonnees_valides(xFinal, yFinal)) {
             //System.out.println(this.getX()!=xFinal);
-            if((this.getX()==xFinal && this.getY()!=yFinal) || (this.getX()!=xFinal && this.getY()==yFinal)) {
-                
-                    return true;
-                
+            if ((Math.abs(xFinal - this.getX())<=1) && (Math.abs(yFinal - this.getY())<=1)) {
+                return true;
             }
         }
-        
+
         return false;
     }
 
     @Override
     public String toString() {
-                return "Ro";
+        return "Ro";
 
     }
 
     @Override
     public String getName() {
-                return "Roi";
+        return "Roi";
 
     }
-    
-    
+
 }
