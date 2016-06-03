@@ -58,7 +58,7 @@ public class Echiquier implements BoardGames {
             sinon : prendre la piéce intermédiaire (vigilance pour le cas du pion) et déplacer la piéce -->true,
         sinon déplacer la piéce -->true
          */
-        boolean piecefinal=false;
+        boolean piecefinal = false;
         boolean pieceIntermediaire = false;
         //piece intermédiaire
         //on vérifie s'il n'y a pas de pièce sur le déplacement
@@ -70,36 +70,40 @@ public class Echiquier implements BoardGames {
         if (xFinal == xInit) {
             sensH = 0;
         } else {
-            sensH = (xFinal - xInit)/dh ;
+            sensH = (xFinal - xInit) / dh;
         }
         if (yFinal == yInit) {
             sensV = 0;
         } else {
-            sensV = (yFinal - yInit)/dv ;
+            sensV = (yFinal - yInit) / dv;
         }
         //on fait le parcours de la pièce pour voir si une pièce est rencontrée
         i = sensH;
         j = sensV;
-         System.out.println("test DH= " + dh + "  dv = " + dv);
-         
-                  System.out.println("test i = " + i + "  j = " + j);
+        System.out.println("test DH= " + dh + "  dv = " + dv);
 
-        while (Math.abs(i) < dh || Math.abs(j) < dv) {           
-            if (jeublanc.isPieceHere(xInit+i, yInit +j ) == true || jeunoir.isPieceHere(xInit + i, yInit +j) == true) {
+        System.out.println("test i = " + i + "  j = " + j);
+
+        while (Math.abs(i) < dh || Math.abs(j) < dv) {
+            if (jeublanc.isPieceHere(xInit + i, yInit + j) == true || jeunoir.isPieceHere(xInit + i, yInit + j) == true) {
                 pieceIntermediaire = true; //on ne peut pas déplacer la pièce
                 break;
             }
             i += sensH;
             j += sensV;
         }
-    if (jeublanc.isPieceHere(xFinal, yFinal ) == true || jeunoir.isPieceHere(xFinal, yFinal) == true) {
-           piecefinal=true;
-    }
+        if (jeublanc.isPieceHere(xFinal, yFinal) == true || jeunoir.isPieceHere(xFinal, yFinal) == true) {
+            piecefinal = true;
+        }
 
-        if (jeucourant.isMoveOk(xInit, yInit, xFinal, yFinal, pieceIntermediaire, jeucourant.castlingPossible) || piecefinal==true) {
+        if (jeucourant.isMoveOk(xInit, yInit, xFinal, yFinal, pieceIntermediaire, jeucourant.castlingPossible)) {
             message = "OK";
             this.isMoveOK = true;
             return true;
+        } else if (piecefinal == true) {
+            message = "OK";
+            this.isMoveOK = true;
+            return true;    
         } else {
             message = "Non OK";
         }
