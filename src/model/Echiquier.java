@@ -81,7 +81,7 @@ public class Echiquier implements BoardGames {
         i = sensH;
         j = sensV;
         while (Math.abs(i) < dh || Math.abs(j) < dv) {
-            if (jeublanc.isPieceHere(xInit+i, yInit+j)== true) {
+            if (jeublanc.isPieceHere(xInit+i, yInit+j)== true ||jeunoir.isPieceHere(xInit+i, yInit+j)) {
                 pieceIntermediaire=true; //on ne peut pas déplacer la pièce
             }
             i += sensH;
