@@ -23,11 +23,11 @@ public class Tour extends AbstractPiece {
     @Override
     public boolean isMoveOk(int xFinal, int yFinal, boolean isCatchOk, boolean isCastlingPossible) {
         if(Coord.coordonnees_valides(xFinal, yFinal)) {
-            if(!isCatchOk) {
+            
                 if(this.getX()==xFinal || this.getY()==yFinal) {
                     return true;
                 }
-            }
+            
         }
         
         return false;
