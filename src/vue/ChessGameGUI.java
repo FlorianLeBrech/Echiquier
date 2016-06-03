@@ -15,6 +15,7 @@ import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Observable;
@@ -36,7 +37,7 @@ import tools.ChessPieceImage;
  *
  * @author hugo.talbot
  */
-public class ChessGameGUI extends JFrame implements Observer, MouseListener {
+public class ChessGameGUI extends JFrame implements Observer, MouseListener, MouseMotionListener {
 
     String jeu_echec;
     ChessGameControlers chessGameControler;
@@ -61,7 +62,7 @@ public class ChessGameGUI extends JFrame implements Observer, MouseListener {
         getContentPane().add(layeredPane);
         layeredPane.setPreferredSize(dim);
         layeredPane.addMouseListener(this);
-        //layeredPane.addMouseMotionListener(this);
+        layeredPane.addMouseMotionListener(this);
         chessBoard = new JPanel();
         layeredPane.add(chessBoard, JLayeredPane.DEFAULT_LAYER);
         chessBoard.setLayout(new GridLayout(8, 8));
