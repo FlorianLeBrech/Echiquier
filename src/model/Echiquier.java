@@ -85,7 +85,7 @@ public class Echiquier implements BoardGames {
                   System.out.println("test i = " + i + "  j = " + j);
 
         while (Math.abs(i) < dh || Math.abs(j) < dv) {           
-            if (jeublanc.isPieceHere(xInit+i, yInit +j ) == true || jeunoir.isPieceHere(xInit + i, yInit +i) == true) {
+            if (jeublanc.isPieceHere(xInit+i, yInit +j ) == true || jeunoir.isPieceHere(xInit + i, yInit +j) == true) {
                 pieceIntermediaire = true; //on ne peut pas déplacer la pièce
                 break;
             }
