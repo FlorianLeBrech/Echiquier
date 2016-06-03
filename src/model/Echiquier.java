@@ -80,7 +80,7 @@ public class Echiquier implements BoardGames {
         //on fait le parcours de la pièce pour voir si une pièce est rencontrée
         i = sensH;
         j = sensV;
-        while (Math.abs(i) < dh || Math.abs(j) < dv) {
+        while (i < dh || j < dv) {
             if (jeublanc.isPieceHere(xInit + i, yInit + j) == true || jeunoir.isPieceHere(xInit + i, yInit + j)) {
                 pieceIntermediaire = true; //on ne peut pas déplacer la pièce
             }
