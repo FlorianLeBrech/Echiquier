@@ -90,7 +90,6 @@ public class Echiquier implements BoardGames {
     @Override
     public boolean move(int xInit, int yInit, int xFinal, int yFinal) {
         if (this.isMoveOK) {
-
             boolean piecefinal = false;
             boolean pieceIntermediaire = false;
             //piece intermédiaire

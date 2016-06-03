@@ -16,8 +16,11 @@ import model.Couleur;
  */
 public class Tour extends AbstractPiece {
    
+    
+    private boolean hasMoove;
     public Tour(Couleur couleur, Coord coord) {
         super(couleur, coord);
+        this.hasMoove=false;
     }
             
     @Override
@@ -42,6 +45,10 @@ public class Tour extends AbstractPiece {
     @Override
     public String getName() {
        return "Tour";
+    }
+
+    public boolean isHasMoove() {
+        return hasMoove;
     }
     
  

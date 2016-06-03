@@ -11,8 +11,10 @@ package model;
  */
 public class Roi extends AbstractPiece {
 
+    private boolean hasMoove;
     public Roi(Couleur couleur, Coord coord) {
         super(couleur, coord);
+        hasMoove=false;
     }
 
     @Override
@@ -38,5 +40,10 @@ public class Roi extends AbstractPiece {
         return "Roi";
 
     }
+
+    public boolean isHasMoove() {
+        return hasMoove;
+    }
+    
 
 }
